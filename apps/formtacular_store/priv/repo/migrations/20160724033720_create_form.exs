@@ -4,7 +4,7 @@ defmodule FormtacularStore.Repo.Migrations.CreateForm do
   def change do
     create table(:forms, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :name, :"character varying", null: false
+      add :name, :string
 
       timestamps()
     end
