@@ -36,5 +36,7 @@ defmodule FormtacularWeb.Endpoint do
     key: "_formtacular_web_key",
     signing_salt: "XE/y8jww"
 
+  plug CORSPlug
+
   plug FormtacularWeb.Router
 end

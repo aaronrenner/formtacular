@@ -37,6 +37,7 @@ defmodule FormtacularWeb.Mixfile do
      {:phoenix_ecto, "~> 3.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:bugsnag, "~> 1.4-beta", override: true},
+     {:cors_plug, "~> 1.1"},
      {:cowboy, "~> 1.0"},
      {:gettext, "~> 0.11"},
      {:formtacular_store, in_umbrella: true},
