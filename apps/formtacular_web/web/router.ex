@@ -1,5 +1,6 @@
 defmodule FormtacularWeb.Router do
   use FormtacularWeb.Web, :router
+  use Plugsnag
 
   pipeline :api do
     plug :accepts, ["json"]

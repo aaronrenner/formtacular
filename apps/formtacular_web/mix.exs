@@ -36,9 +36,11 @@ defmodule FormtacularWeb.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_ecto, "~> 3.0"},
      {:phoenix_pubsub, "~> 1.0"},
-     {:gettext, "~> 0.11"},
+     {:bugsnag, "~> 1.4-beta", override: true},
      {:cowboy, "~> 1.0"},
-     {:formtacular_store, in_umbrella: true}]
+     {:gettext, "~> 0.11"},
+     {:formtacular_store, in_umbrella: true},
+     {:plugsnag, "~> 1.3-beta"}]
   end
 
   defp aliases do
