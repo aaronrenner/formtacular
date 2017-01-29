@@ -1,0 +1,12 @@
+<p>Hi There!</p>
+
+<p>Looks like you got a new submission on your form.</p>
+
+<p>Here's the data</p>
+
+<dl>
+  <%= for {key, value} <-@submission.form_data do %>
+    <dt><%= key %></dt>
+    <dd><%= value %></dd>
+  <% end %>
+</dl>

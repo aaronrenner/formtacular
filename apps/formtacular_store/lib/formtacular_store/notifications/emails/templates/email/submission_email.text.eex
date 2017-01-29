@@ -1,0 +1,12 @@
+Hi There!
+
+Looks like you got a new submission on your form.
+
+Here's the data:
+
+<%= for {key, value} <- @submission.form_data do %>
+  <%= key %>
+  ----------
+  <%= value %>
+
+<% end %>

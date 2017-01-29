@@ -3,8 +3,8 @@ defmodule FormtacularStore do
   Business logic for Formtacular
   """
 
-  alias FormtacularStore.Forms.{Form, Submission}
-  alias FormtacularStore.Repo
+  alias FormtacularStore.{Forms, Repo, Notifications}
+  alias FormtacularStore.Forms.Form
   import Ecto
 
   @doc """
@@ -26,10 +26,10 @@ defmodule FormtacularStore do
   Records a form submission
   """
   def record_submission(form, params) do
-    form
-    |> build_assoc(:submissions)
-    |> Submission.changeset(params)
-    |> Repo.insert
+    with {:ok, submission} <- Forms.store_submission(form, params) do
+      Notifications.notify_new_submission(form, submission)
+      {:ok, submission}
+    end
   end
 
   @doc """

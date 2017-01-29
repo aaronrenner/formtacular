@@ -10,6 +10,7 @@ defmodule FormtacularStore.Mixfile do
      lockfile: "../../mix.lock",
      elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
+     compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases(),
@@ -44,7 +45,11 @@ defmodule FormtacularStore.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:ecto, "~> 2.0"},
+    [{:bamboo, "~> 0.8"},
+     {:ecto, "~> 2.0"},
+     {:gettext, "~> 0.11"},
+     {:phoenix, "~> 1.2.1"},
+     {:phoenix_html, "~> 2.9"},
      {:poison, "~> 2.0"},
      {:postgrex, "~> 0.11"},
      {:gettext, "~> 0.11", only: [:test]}]
