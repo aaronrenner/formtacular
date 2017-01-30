@@ -10,3 +10,9 @@
     <dd><%= value %></dd>
   <% end %>
 </dl>
+
+
+<p>Additional Details</p>
+<ul>
+  <li>IP Address: <%= @submission.ip_address |> nil_as_na %></li>
+</ul>

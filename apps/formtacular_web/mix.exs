@@ -41,7 +41,8 @@ defmodule FormtacularWeb.Mixfile do
      {:cowboy, "~> 1.0"},
      {:gettext, "~> 0.11"},
      {:formtacular_store, in_umbrella: true},
-     {:plugsnag, "~> 1.3-beta"}]
+     {:plugsnag, "~> 1.3-beta"},
+     {:remote_ip, "~> 0.1.0"}]
   end
 
   defp aliases do

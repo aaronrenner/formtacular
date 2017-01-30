@@ -14,3 +14,8 @@ This application is configured via the following environment variables:
     SECRET_KEY_BASE = Phoenix secret key. Can generate using `mix phoenix.gen.secret`
     SENDGRID_API_KEY = Api key for sending emails through sendgrid
 
+## Important notes
+
+This application must live behind at least one layer of proxy, because it does
+IP address detection using the `X-Forwarded-For` header. If this is not
+protected by a proxy, the app is subject to IP address spoofing.

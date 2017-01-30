@@ -9,6 +9,7 @@ defmodule FormtacularStore.ModelCase do
     quote do
       alias FormtacularStore.Repo
 
+      import Ecto.Changeset
       import FormtacularStore.ModelCase
     end
   end

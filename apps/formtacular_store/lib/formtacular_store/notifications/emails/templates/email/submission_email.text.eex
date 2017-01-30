@@ -10,3 +10,8 @@ Here's the data:
   <%= value %>
 
 <% end %>
+
+
+Additional Data
+---------------
+IP Address: <%= @submission.ip_address |> nil_as_na %>
