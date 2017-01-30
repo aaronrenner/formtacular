@@ -3,7 +3,7 @@ defmodule FormtacularStore do
   Public API for FormtacularStore
   """
 
-  alias FormtacularStore.{Forms, Notifications}
+  alias FormtacularStore.{Forms, SubmissionPipeline}
 
   @doc """
   Creates a form with the given parameters
@@ -21,7 +21,7 @@ defmodule FormtacularStore do
   """
   def record_submission(form, params) do
     with {:ok, submission} <- Forms.store_submission(form, params) do
-      Notifications.notify_new_submission(form, submission)
+      SubmissionPipeline.enqueue(form, submission)
       {:ok, submission}
     end
   end

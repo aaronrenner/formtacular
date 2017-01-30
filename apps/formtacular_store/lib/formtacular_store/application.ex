@@ -12,7 +12,8 @@ defmodule FormtacularStore.Application do
     children = [
       # Starts a worker by calling: FormtacularStore.Worker.start_link(arg1, arg2, arg3)
       # worker(FormtacularStore.Worker, [arg1, arg2, arg3]),
-      supervisor(FormtacularStore.Repo, [])
+      supervisor(FormtacularStore.Repo, []),
+      supervisor(FormtacularStore.SubmissionPipeline.Supervisor, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
