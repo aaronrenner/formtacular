@@ -1,40 +1,41 @@
-defmodule FormtacularStoreTest do
+defmodule FormtacularStore.FormsTest do
   use FormtacularStore.ModelCase, async: true
+
+  alias FormtacularStore.Forms
 
   describe "create_form/1" do
     test "with valid params" do
-      {:ok, form} = FormtacularStore.create_form(%{name: "Sample form"})
+      {:ok, form} = Forms.create(%{name: "Sample form"})
 
       assert form.id
       assert form.name == "Sample form"
     end
 
     test "with invalid params" do
-      assert {:error, _changeset} = FormtacularStore.create_form(%{name: ""})
+      assert {:error, _changeset} = Forms.create(%{name: ""})
     end
   end
 
-  describe "get_form!/1" do
+  describe "get!/1" do
     test "when a form id is found" do
       %{id: form_id} = create_form()
 
-      assert %{id: ^form_id } = FormtacularStore.get_form!(form_id)
+      assert %{id: ^form_id } = Forms.get!(form_id)
     end
 
     test "when a form id is not found" do
       assert_raise Ecto.NoResultsError, fn ->
-        FormtacularStore.get_form!(Ecto.UUID.generate)
+        Forms.get!(Ecto.UUID.generate)
       end
     end
   end
 
-
-  describe "record_submission/2" do
+  describe "store_submission/2" do
     test "with valid params" do
       form = create_form()
       form_data = %{"email" => "jdoe@example.com"}
 
-      {:ok, submission} = FormtacularStore.record_submission(form,
+      {:ok, submission} = Forms.store_submission(form,
                             %{"form_data" => form_data})
 
       assert submission.id
@@ -44,7 +45,7 @@ defmodule FormtacularStoreTest do
     test "with invalid params" do
       form = create_form()
 
-      assert {:error, _changeset} = FormtacularStore.record_submission(form,%{})
+      assert {:error, _changeset} = Forms.store_submission(form,%{})
     end
   end
 
@@ -61,13 +62,12 @@ defmodule FormtacularStoreTest do
     params = Enum.into(params, %{})
     default_params = %{name: "my form"}
 
-    {:ok, form} =
-      default_params |> Map.merge(params) |> FormtacularStore.create_form()
+    {:ok, form} = default_params |> Map.merge(params) |> Forms.create()
     form
   end
 
   defp add_submission(form) do
-    {:ok, submission} = FormtacularStore.record_submission(form,
+    {:ok, submission} = Forms.store_submission(form,
                           %{"form_data" => %{"hello" => "world"}})
     submission
   end

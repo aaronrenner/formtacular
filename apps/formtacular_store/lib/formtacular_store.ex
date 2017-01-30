@@ -1,26 +1,20 @@
 defmodule FormtacularStore do
   @moduledoc """
-  Business logic for Formtacular
+  Public API for FormtacularStore
   """
 
-  alias FormtacularStore.{Forms, Repo, Notifications}
-  alias FormtacularStore.Forms.Form
-  import Ecto
+  alias FormtacularStore.{Forms, Notifications}
 
   @doc """
   Creates a form with the given parameters
   """
-  def create_form(params) do
-    %Form{} |> Form.changeset(params) |> Repo.insert
-  end
+  def create_form(params), do: Forms.create(params)
 
   @doc """
   Gets the form for the given id. If no form is found,
   it raises an Ecto.NoResultsError
   """
-  def get_form!(form_id) do
-    Form |> Repo.get!(form_id)
-  end
+  def get_form!(form_id), do: Forms.get!(form_id)
 
   @doc """
   Records a form submission
@@ -35,7 +29,5 @@ defmodule FormtacularStore do
   @doc """
   Gets the submissions for a given form
   """
-  def get_submissions(form) do
-    form |> assoc(:submissions) |> Repo.all
-  end
+  def get_submissions(form), do: Forms.get_submissions(form)
 end
