@@ -4,7 +4,9 @@ defmodule FormtacularStore.Forms do
   """
 
   import Ecto
+  import Ecto.Changeset
   alias FormtacularStore.Forms.{Form, Submission}
+  alias FormtacularStore.Geo.IpLocationResult
   alias FormtacularStore.Repo
 
   @doc """
@@ -37,5 +39,19 @@ defmodule FormtacularStore.Forms do
   """
   def get_submissions(form) do
     form |> assoc(:submissions) |> Repo.all
+  end
+
+  @doc """
+  Updates a submission from an IpLocationResult
+  """
+  def update_submission_from_ip_location_result(_form, submission,
+    %IpLocationResult{} = ip_location_result) do
+
+    submission
+    |> change()
+    |> put_change(:ip_city, ip_location_result.city)
+    |> put_change(:ip_region_code, ip_location_result.region_code)
+    |> put_change(:ip_country_code, ip_location_result.country_code)
+    |> Repo.update
   end
 end

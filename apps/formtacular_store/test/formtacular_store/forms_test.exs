@@ -2,6 +2,7 @@ defmodule FormtacularStore.FormsTest do
   use FormtacularStore.ModelCase, async: true
 
   alias FormtacularStore.Forms
+  alias FormtacularStore.Geo.IpLocationResult
 
   describe "create_form/1" do
     test "with valid params" do
@@ -54,7 +55,25 @@ defmodule FormtacularStore.FormsTest do
       form = create_form()
       %{id: submission_id} = add_submission(form)
 
-      assert [%{id: ^submission_id}] = FormtacularStore.get_submissions(form)
+      assert [%{id: ^submission_id}] = Forms.get_submissions(form)
+    end
+  end
+
+  describe "update_submission_from_ip_location_result/2" do
+    test "with ip location result" do
+      form = create_form()
+      submission = add_submission(form)
+      ip_location_result = %IpLocationResult{
+        city: "Durango",
+        region_code: "CO",
+        country_code: "US"
+      }
+
+      {:ok, submission} = Forms.update_submission_from_ip_location_result(form, submission, ip_location_result)
+
+      assert submission.ip_city == ip_location_result.city
+      assert submission.ip_region_code == ip_location_result.region_code
+      assert submission.ip_country_code == ip_location_result.country_code
     end
   end
 

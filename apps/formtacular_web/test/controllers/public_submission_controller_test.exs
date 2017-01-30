@@ -1,5 +1,5 @@
 defmodule FormtacularWeb.PublicSubmissionControllerTest do
-  use FormtacularWeb.ConnCase, async: true
+  use FormtacularWeb.ConnCase
 
   alias FormtacularStore.Forms.Submission
 

@@ -14,5 +14,12 @@
 
 <p>Additional Details</p>
 <ul>
-  <li>IP Address: <%= @submission.ip_address |> nil_as_na %></li>
+  <li>
+    IP Address: <%= @submission.ip_address |> nil_as_na %>
+    <ul>
+      <li>City: <%= @submission.ip_city |> nil_as_na %></li>
+      <li>Region: <%= @submission.ip_region_code |> nil_as_na %></li>
+      <li>Country: <%= @submission.ip_country_code |> nil_as_na %></li>
+    </ul>
+  </li>
 </ul>

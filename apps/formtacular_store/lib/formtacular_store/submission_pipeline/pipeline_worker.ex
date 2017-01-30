@@ -5,7 +5,8 @@ defmodule FormtacularStore.SubmissionPipeline.PipelineWorker do
   """
   use GenServer
 
-  alias FormtacularStore.Notifications
+  alias FormtacularStore.{Forms, Geo, Notifications}
+  alias FormtacularStore.Forms.Submission
 
   # Public API
 
@@ -24,9 +25,18 @@ defmodule FormtacularStore.SubmissionPipeline.PipelineWorker do
   end
 
   def handle_cast(:run, [form, submission]) do
+    {:ok, submission} = import_ip_location_data(form,submission)
+
     Notifications.notify_new_submission(form, submission)
 
     # Once pipeline is done, stop.
     {:stop, :normal, [form, submission]}
+  end
+
+  defp import_ip_location_data(form, %Submission{ip_address: ip_address} = submission) when is_nil(ip_address), do: {:ok, submission}
+  defp import_ip_location_data(form, submission) do
+    {:ok, result} = Geo.lookup_ip(submission.ip_address)
+
+    Forms.update_submission_from_ip_location_result(form, submission, result)
   end
 end

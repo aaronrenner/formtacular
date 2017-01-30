@@ -15,3 +15,6 @@ Here's the data:
 Additional Data
 ---------------
 IP Address: <%= @submission.ip_address |> nil_as_na %>
+  City: <%= @submission.ip_city |> nil_as_na %>
+  Region: <%= @submission.ip_region_code |> nil_as_na %>
+  Country: <%= @submission.ip_country_code |> nil_as_na %>

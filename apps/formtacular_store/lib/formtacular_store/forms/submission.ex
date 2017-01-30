@@ -10,6 +10,9 @@ defmodule FormtacularStore.Forms.Submission do
     belongs_to :form, Form
     field :form_data, :map
     field :ip_address, :string
+    field :ip_city, :string
+    field :ip_region_code, :string
+    field :ip_country_code, :string
 
     timestamps()
   end
