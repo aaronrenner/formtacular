@@ -37,7 +37,7 @@ defmodule FormtacularStore.Geo.FreeGeoIpAdapter do
 
   defp default_base_url do
     :formtacular_store
-    |> Application.fetch_env(__MODULE__)
+    |> Application.fetch_env!(__MODULE__)
     |> Keyword.fetch!(:base_url)
   end
 end
