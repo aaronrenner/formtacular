@@ -48,10 +48,12 @@ defmodule FormtacularStore.Mixfile do
     [{:bamboo, "~> 0.8"},
      {:ecto, "~> 2.0"},
      {:gettext, "~> 0.11"},
+     {:httpoison, "~> 0.11"},
      {:phoenix, "~> 1.2.1"},
      {:phoenix_html, "~> 2.9"},
      {:poison, "~> 2.0"},
      {:postgrex, "~> 0.11"},
+     {:bypass, "~> 0.5", only: [:test]},
      {:gettext, "~> 0.11", only: [:test]}]
   end
 

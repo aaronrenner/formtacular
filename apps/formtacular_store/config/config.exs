@@ -12,6 +12,11 @@ config :formtacular_store, FormtacularStore.Repo,
   password: "postgres",
   hostname: "localhost"
 
+config :formtacular_store, FormtacularStore.Geo,
+  adapter: FormtacularStore.Geo.FreeGeoIpAdapter
+
+config :formtacular_store, FormtacularStore.Geo.FreeGeoIpAdapter,
+  base_url: "https://freegeoip.net"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
