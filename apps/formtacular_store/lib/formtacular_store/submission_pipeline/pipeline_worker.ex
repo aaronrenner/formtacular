@@ -33,7 +33,7 @@ defmodule FormtacularStore.SubmissionPipeline.PipelineWorker do
     {:stop, :normal, [form, submission]}
   end
 
-  defp import_ip_location_data(form, %Submission{ip_address: ip_address} = submission) when is_nil(ip_address), do: {:ok, submission}
+  defp import_ip_location_data(_form, %Submission{ip_address: ip_address} = submission) when is_nil(ip_address), do: {:ok, submission}
   defp import_ip_location_data(form, submission) do
     {:ok, result} = Geo.lookup_ip(submission.ip_address)
 
