@@ -1,13 +1,13 @@
 defmodule FormtacularStore.Notifications.EmailsTest do
   use ExUnit.Case, async: true
 
-  alias FormtacularStore.Forms.Form
+  alias FormtacularStore.Forms.{Form, Submission}
   alias FormtacularStore.Notifications.Emails
 
   describe "submission_email/2" do
     test "generates an email with all of the submission data" do
       form = %Form{}
-      submission = %{form_data: %{"hello" => "world"}, ip_address: "17.2.6.3"}
+      submission = %Submission{form_data: %{"hello" => "world"}, ip_address: "17.2.6.3"}
 
       email = Emails.submission_email(form, submission)
 
@@ -22,7 +22,7 @@ defmodule FormtacularStore.Notifications.EmailsTest do
 
     test "without an ip" do
       form = %Form{}
-      submission = %{form_data: %{"hello" => "world"}, ip_address: nil}
+      submission = %Submission{form_data: %{"hello" => "world"}, ip_address: nil}
 
       email = Emails.submission_email(form, submission)
 
